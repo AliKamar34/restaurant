@@ -1,0 +1,23 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "restaurant-b278d",
+                    "appId": "1:167501484195:android:6de53886c14225f036af16",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "restaurant-b278d",
+                    "configurations": {
+                        "android": "1:167501484195:android:6de53886c14225f036af16",
+                        "ios": "1:167501484195:ios:27c0f4d585868a2c36af16",
+                        "windows": "1:167501484195:web:862a87089612b19536af16"
+                    }
+                }
+            }
+        }
+    }
+}
