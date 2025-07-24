@@ -8,11 +8,16 @@ abstract class Failure {
   const Failure(this.errorMessage);
 }
 
+class NetworkFailure extends Failure {
+  const NetworkFailure(super.errorMessage);
+}
+
 class FirebaseExceptionFailure extends Failure {
   FirebaseExceptionFailure(super.errorMessage);
 
   factory FirebaseExceptionFailure.fromFirebaseException(
-      FirebaseException firebaseException) {
+    FirebaseException firebaseException,
+  ) {
     if (firebaseException.code == 'email-already-in-use') {
       return FirebaseExceptionFailure('email already in use');
     } else if (firebaseException.code == 'weak-password') {
@@ -29,7 +34,8 @@ class FirebaseExceptionFailure extends Failure {
       return FirebaseExceptionFailure('email or password is wrong');
     } else if (firebaseException.code == 'too-many-requests') {
       return FirebaseExceptionFailure(
-          'too many requests , please try again later');
+        'too many requests , please try again later',
+      );
     }
     log(firebaseException.code);
     return FirebaseExceptionFailure(firebaseException.code);
