@@ -13,17 +13,20 @@ class NavBarView extends StatefulWidget {
 
 class _NavBarViewState extends State<NavBarView> {
   int selectedIndex = 0;
-  static const List<Widget> pages = [MenuView(), MenuView(), MenuView()];
+  static const List<Widget> pages = [MenuView(), Placeholder(), MenuView()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[selectedIndex],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: pages[selectedIndex],
+      ),
       bottomNavigationBar: Container(
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.only(
-            top: 12,
-            bottom: 20,
+            top: 6,
+            bottom: 10,
             right: 16,
             left: 16,
           ),
@@ -72,6 +75,9 @@ class _NavBarViewState extends State<NavBarView> {
             onTabChange: (index) {
               setState(() {
                 selectedIndex = index;
+                // if (index == 0){
+                //   BlocProvider.of<MenuCubit>(context).getMenuItems();
+                // }
               });
             },
           ),
