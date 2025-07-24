@@ -25,7 +25,7 @@ class GridMenuItem extends StatelessWidget {
           Text(menuItemModel.name, style: TextStyles.medium16(context)),
 
           Text(
-            menuItemModel.price.toString(),
+            '${menuItemModel.price} \$ ',
             style: TextStyles.medium14(context),
           ),
         ],

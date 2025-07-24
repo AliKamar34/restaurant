@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant/core/utils/functions/show_bottom_sheet.dart';
 import 'package:restaurant/core/utils/functions/show_toast.dart';
-import 'package:restaurant/features/home/data/models/menu_item_model.dart';
 import 'package:restaurant/features/home/presentation/manager/cubit/menu_cubit.dart';
+import 'package:restaurant/features/home/presentation/views/widgets/bottom_sheet_content.dart';
+import 'package:restaurant/features/home/presentation/views/widgets/custom_grid_idicator.dart';
 import 'package:restaurant/features/home/presentation/views/widgets/grid_menu_item.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class MenuViewBody extends StatelessWidget {
   const MenuViewBody({super.key});
@@ -28,32 +29,23 @@ class MenuViewBody extends StatelessWidget {
             ),
             itemCount: state.menuItems.length,
             itemBuilder: (context, index) {
-              return GridMenuItem(menuItemModel: state.menuItems[index]);
+              return InkWell(
+                onTap: () {
+                  showBlurBottomSheet(
+                    context,
+                    BottomSheetContent(
+                      image: state.menuItems[index].imageUrl,
+                      name: state.menuItems[index].name,
+                      price: state.menuItems[index].price,
+                    ),
+                  );
+                },
+                child: GridMenuItem(menuItemModel: state.menuItems[index]),
+              );
             },
           );
         } else {
-          return Skeletonizer(
-            enabled: true,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                childAspectRatio: MediaQuery.sizeOf(context).aspectRatio * 2.19,
-              ),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return GridMenuItem(
-                  menuItemModel: MenuItemModel(
-                    name: 'Loading...',
-                    imageUrl:
-                        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT830QVulpUmgjbcdqypXP5Cl4CkPxRpi2ZsWs4vKugj10_wQOujs3IE_LizsXcp3YkAsnl68PiWf3P6I5M_Ih4mliiKpfNWKFVRRORNg',
-                    price: 0.0,
-                  ),
-                );
-              },
-            ),
-          );
+          return CustomGridIdicator();
         }
       },
     );
