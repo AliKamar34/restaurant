@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:restaurant/core/widgets/custom_button.dart';
 import 'package:restaurant/core/widgets/custom_text_field.dart';
+import 'package:restaurant/features/auth/presentation/manager/auth_bloc/auth_bloc.dart';
 
 class LogInForm extends StatefulWidget {
   const LogInForm({super.key});
@@ -80,6 +82,10 @@ class _LogInFormState extends State<LogInForm> {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                BlocProvider.of<AuthBloc>(
+                  context,
+                  listen: false,
+                ).add(LogInEvent(email: email!, password: password!));
               } else {
                 setState(() {
                   autovalidateMode = AutovalidateMode.always;
