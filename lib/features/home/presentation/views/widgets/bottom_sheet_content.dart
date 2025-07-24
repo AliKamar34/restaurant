@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:restaurant/core/utils/app_text_styles.dart';
+import 'package:restaurant/core/utils/functions/show_toast.dart';
 import 'package:restaurant/core/widgets/custom_button.dart';
+import 'package:restaurant/features/home/presentation/views/widgets/small_quantity_selector.dart';
 
 class BottomSheetContent extends StatelessWidget {
   const BottomSheetContent({
@@ -15,6 +18,7 @@ class BottomSheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 15,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,11 +31,23 @@ class BottomSheetContent extends StatelessWidget {
             imageUrl: image,
           ),
         ),
-        Text(name, style: TextStyles.medium16(context)),
+        Text(name, style: TextStyles.medium20(context)),
 
-        Text('$price \$ ', style: TextStyles.medium14(context)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('$price \$ ', style: TextStyles.medium18(context)),
+            SmallBlurQuantitySelector(onChanged: (value) {}),
+          ],
+        ),
         const SizedBox(height: 20),
-        CustomButton(onPressed: () {}, text: 'Add to Cart'),
+        CustomButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+            showToast(context, 'added to cart');
+          },
+          text: 'Add to Cart',
+        ),
       ],
     );
   }
