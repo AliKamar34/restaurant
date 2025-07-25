@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:restaurant/core/utils/app_colors.dart';
 import 'package:restaurant/core/utils/app_text_styles.dart';
+import 'package:restaurant/features/home/presentation/views/cart_view.dart';
 import 'package:restaurant/features/home/presentation/views/menu_view.dart';
 
 class NavBarView extends StatefulWidget {
@@ -13,7 +14,7 @@ class NavBarView extends StatefulWidget {
 
 class _NavBarViewState extends State<NavBarView> {
   int selectedIndex = 0;
-  static const List<Widget> pages = [MenuView(), Placeholder(), MenuView()];
+  static const List<Widget> pages = [MenuView(), CartView()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,16 +60,6 @@ class _NavBarViewState extends State<NavBarView> {
                 ).copyWith(color: Color(0xff00AF6A)),
                 rippleColor: Color(0xff00AF6A).withAlpha(25),
                 backgroundColor: Color(0xff00AF6A).withAlpha(25),
-              ),
-              GButton(
-                icon: Icons.person,
-                iconSize: 20,
-                text: 'Profile',
-                textStyle: TextStyles.medium12(
-                  context,
-                ).copyWith(color: Color(0xff7F00FF)),
-                rippleColor: Color(0xff7F00FF).withAlpha(25),
-                backgroundColor: Color(0xff7F00FF).withAlpha(25),
               ),
             ],
             selectedIndex: selectedIndex,

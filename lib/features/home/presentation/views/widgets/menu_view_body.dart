@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/core/utils/functions/show_bottom_sheet.dart';
 import 'package:restaurant/core/utils/functions/show_toast.dart';
-import 'package:restaurant/features/home/presentation/manager/cubit/menu_cubit.dart';
+import 'package:restaurant/features/home/data/repos/menu_repo_impl.dart';
+import 'package:restaurant/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:restaurant/features/home/presentation/manager/menu_cubit/menu_cubit.dart';
 import 'package:restaurant/features/home/presentation/views/widgets/bottom_sheet_content.dart';
 import 'package:restaurant/features/home/presentation/views/widgets/custom_grid_idicator.dart';
 import 'package:restaurant/features/home/presentation/views/widgets/grid_menu_item.dart';
@@ -33,10 +35,13 @@ class MenuViewBody extends StatelessWidget {
                 onTap: () {
                   showBlurBottomSheet(
                     context,
-                    BottomSheetContent(
-                      image: state.menuItems[index].imageUrl,
-                      name: state.menuItems[index].name,
-                      price: state.menuItems[index].price,
+                    BlocProvider(
+                      create: (context) => CartCubit(MenuRepoImpl()),
+                      child: BottomSheetContent(
+                        image: state.menuItems[index].imageUrl,
+                        name: state.menuItems[index].name,
+                        price: state.menuItems[index].price,
+                      ),
                     ),
                   );
                 },
