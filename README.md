@@ -1,16 +1,48 @@
-# restaurant
+# 🍽️ - Restaurant App
 
-A new Flutter project.
+This is a Flutter mobile app built as part of the Reco Genie internship task.  
+It simulates a basic restaurant app with login, menu browsing, and a shopping cart feature.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔐 **Login Page**
+  - Email/password login using Firebase Authentication
+  - Form validation (required fields, invalid email)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 📋 **Menu Page**
+  - Fetches food items from Firebase Firestore
+  - Displays food name, price, and image
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🛒 **Cart Page**
+  - Add/remove items from the cart
+  - Displays selected items and total price
+  - State management using Bloc
+
+- 🚀 **Navigation**
+  - Handled using GoRouter
+
+- 🧠 **State Management**
+  - Implemented using Bloc and Cubit (clean separation of logic)
+
+- ✅ **MVVM Pattern**
+  - Well-structured folders: models, views, blocs, services, widgets
+
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech        | Use                            |
+|-------------|---------------------------------|
+| Flutter     | Mobile app framework            |
+| Firebase    | Auth & Firestore backend        |
+| Bloc        | State management                |
+| GoRouter    | Navigation                      |
+| MVVM        | Architecture & separation       |
+
+---
+
+
+
